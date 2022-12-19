@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Product {
+  id         Int      @id @default(autoincrement())
+  product_id Int
+  name       String
+  url        String
+  img_url    String
+  total      Int
+  now        Int
+  start      DateTime
+  end        DateTime
+  yield      Decimal
+  period     Int
+  status     Status   @default(onWaiting)
+}
+
+enum Status {
+  onWaiting
+  onProcess
+  completed
+}
